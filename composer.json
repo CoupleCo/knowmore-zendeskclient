@@ -1,5 +1,5 @@
 {
-    "name": "knowmore/zendesk",
+    "name": "knowmore/zendeskclient",
     "description": "Utility package for the nomore and knowmore platforms",
     "keywords": ["template", "composer", "package"],
     "license": "MIT",
@@ -18,7 +18,7 @@
     },
 	"autoload": {
         "psr-4": {
-            "Knowmore\\Zendesk\\": "src/"
+            "Knowmore\\Zendeskclient\\": "src/"
         }
     }
 }
