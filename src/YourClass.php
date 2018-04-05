@@ -1,4 +1,4 @@
-<?php namespace knowmore\zendeskclient;
+<?php namespace NomorePackage\zendeskclient;
 
 /**
 *  A sample class
