@@ -6,7 +6,7 @@
  * Time: 12:17
  */
 
-namespace NomorePackage\zendeskclient;
+namespace NomorePackage\Zendeskclient;
 
 /**
  * reference: https://developer.zendesk.com/rest_api/docs/core/tickets

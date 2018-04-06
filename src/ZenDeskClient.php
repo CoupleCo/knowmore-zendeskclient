@@ -1,5 +1,5 @@
 <?php
-namespace NomorePackage\zendeskclient;
+namespace NomorePackage\Zendeskclient;
 
 //use App\Classes\User\Notifications\Slack;
 use Exception;

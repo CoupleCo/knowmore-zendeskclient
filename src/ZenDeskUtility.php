@@ -1,5 +1,5 @@
 <?php
-namespace NomorePackage\zendeskclient;
+namespace NomorePackage\Zendeskclient;
 
 abstract class ZenDeskUtility
 {
