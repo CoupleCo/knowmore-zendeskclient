@@ -54,6 +54,17 @@ class Ticket extends ZenDeskUtility
         return $tickets;
     }
 
+    public function delete()
+    {
+        if (is_null($this->with)) abort (403, 'No ticket id specified.');
+
+        $tickets = $this->client->request('DELETE', 'tickets' . $this->with);
+
+        $this->with = null;
+
+        return $tickets;
+    }
+
 
     public function include($include){
 
