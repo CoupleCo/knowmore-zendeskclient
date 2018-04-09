@@ -23,22 +23,22 @@ class TicketComment extends ZenDeskUtility
         return ['success' => true, 'data' => $this->client->request('PUT', $url, $content)];
     }
 
-    public function replyToTicket($ticket_id, $message) {
-
-        $content = ['ticket' => ['comment' => ['html_body' => $message, 'public' => true]]];
-
-        $url = 'tickets/' . $ticket_id . '.json';
-
-        return ['success' => true, 'data' => $this->client->request('PUT', $url, $content)];
-    }
-
-    public function createTicketNote($ticket_id, $message){
-
-        $content = ['ticket' => ['comment' => ['html_body' => $message, 'public' => false]]];
-
-        $url = 'tickets/' . $ticket_id . '.json';
-
-        return ['success' => true, 'data' => $this->client->request('PUT', $url, $content)];
-
-    }
+//    public function replyToTicket($ticket_id, $message) {
+//
+//        $content = ['ticket' => ['comment' => ['html_body' => $message, 'public' => true]]];
+//
+//        $url = 'tickets/' . $ticket_id . '.json';
+//
+//        return ['success' => true, 'data' => $this->client->request('PUT', $url, $content)];
+//    }
+//
+//    public function createTicketNote($ticket_id, $message){
+//
+//        $content = ['ticket' => ['comment' => ['html_body' => $message, 'public' => false]]];
+//
+//        $url = 'tickets/' . $ticket_id . '.json';
+//
+//        return ['success' => true, 'data' => $this->client->request('PUT', $url, $content)];
+//
+//    }
 }
