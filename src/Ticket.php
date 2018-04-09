@@ -58,11 +58,15 @@ class Ticket extends ZenDeskUtility
     {
         if (is_null($this->with)) abort (403, 'No ticket id specified.');
 
-        $tickets = $this->client->request('DELETE', 'tickets' . $this->with);
+        // move to deleted
+        $response = $this->client->request('DELETE', 'tickets' . $this->with);
+
+        // then delete permanently
+        $response = $this->client->request('DELETE', 'deleted_tickets' . $this->with);
 
         $this->with = null;
 
-        return $tickets;
+        return $response;
     }
 
 
