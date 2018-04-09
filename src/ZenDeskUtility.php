@@ -11,15 +11,31 @@ abstract class ZenDeskUtility
         $this->client = new ZenDeskClient();
     }
 
+    public function count($results){
 
-//    abstract protected function get();
-//
-//    abstract protected function getAll();
-//
-//    abstract protected function create();
-//
-//    abstract protected function update();
-//
-//    abstract protected function delete();
+        return $results['count'];
+    }
+
+    public function listTickets($results){
+
+        try{
+            return $results['tickets'];
+        }catch(\Exception $e){
+            return $results['results'];
+        }
+    }
+
+    public function listUsers($results){
+        return $results['users'];
+    }
+
+    public function findRequester($requesters, $id){
+
+        foreach ($requesters as $requester):
+            if($requester->id == $id) return $requester;
+        endforeach;
+
+        return null;
+    }
 
 }

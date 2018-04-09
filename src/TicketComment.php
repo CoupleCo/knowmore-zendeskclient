@@ -14,6 +14,15 @@ namespace NomorePackage\Zendeskclient;
 class TicketComment extends ZenDeskUtility
 {
 
+    public function create($ticket_id, Array $comment) {
+
+        $content = ['ticket' => ['comment' => $comment]];
+
+        $url = 'tickets/' . $ticket_id . '.json';
+
+        return ['success' => true, 'data' => $this->client->request('PUT', $url, $content)];
+    }
+
     public function replyToTicket($ticket_id, $message) {
 
         $content = ['ticket' => ['comment' => ['html_body' => $message, 'public' => true]]];

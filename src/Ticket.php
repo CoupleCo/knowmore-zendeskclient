@@ -14,6 +14,12 @@ namespace NomorePackage\Zendeskclient;
 class Ticket extends ZenDeskUtility
 {
 
+    private $with;
+
+    private $search;
+
+    private $query_sign = '?';
+
     public function create($description, $subject, $email, $priority = 'normal') {
 
         $content = ['ticket' =>
@@ -25,6 +31,53 @@ class Ticket extends ZenDeskUtility
             ]];
 
         return $this->client->request('POST', 'tickets.json', $content);
+    }
+
+    public function get(){
+
+        if(is_null($this->search)) $endpoint = 'tickets';
+        else $endpoint = $this->search;
+
+        if (strpos($this->with, '.json') !== false) {
+
+            $tickets = $this->client->request('GET', $endpoint . $this->with);
+        }else{
+            if(is_null($this->search)) $endpoint .= '.json';
+
+            $tickets = $this->client->request('GET', $endpoint . $this->with);
+            dd($tickets);
+        }
+
+        $this->with = null;
+        $this->search = null;
+
+        return $tickets;
+    }
+
+
+    public function include($include){
+
+        $this->with .= $this->query_sign . 'include=' . $include;
+
+        $this->query_sign = '&';
+
+        return $this;
+    }
+
+    public function find($id){
+
+        $this->with .= '/' . $id . '.json';
+
+        return $this;
+    }
+
+    public function search($type, $value){
+
+        $this->search =  'search.json?query=type:ticket '. $type.':' . $value;
+
+        $this->query_sign = '&';
+
+        return $this;
     }
 
 }
