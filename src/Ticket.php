@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: Emilo
- * Date: 04-04-2018
- * Time: 12:17
- */
 
 namespace NomorePackage\Zendeskclient;
 

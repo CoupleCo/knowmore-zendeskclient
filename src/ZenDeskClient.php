@@ -1,4 +1,5 @@
 <?php
+
 namespace NomorePackage\Zendeskclient;
 
 //use App\Classes\User\Notifications\Slack;
@@ -6,27 +7,23 @@ use Exception;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
-class ZenDeskClient
-{
+class ZenDeskClient {
     private $domain;
     private $username;
     private $token;
     private $guzzle;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->domain = env('ZENDESK_DOMAIN');
 //        $this->subdomain = config('zendesk.subdomain');
         $this->username = env('ZENDESK_USERNAME');
         $this->token = env('ZENDESK_TOKEN');
-        $this->guzzle   = new Guzzle;
+        $this->guzzle = new Guzzle;
     }
 
 
-    public function request($method, $endpoint, $content = [])
-    {
-        try
-        {
+    public function request($method, $endpoint, $content = []) {
+        try {
 
             $url = $this->domain . $endpoint;
             $response = $this->guzzle->request(
@@ -42,16 +39,13 @@ class ZenDeskClient
 
             return $this->createResponse($response);
 
-        }
-        catch (Exception $e)
-        {
-            dd($e);
+        } catch (Exception $e) {
+            return ['success' => false, 'message' => $e->getMessage()];
         }
 
     }
 
-    protected function createResponse(GuzzleResponse $response)
-    {
+    protected function createResponse(GuzzleResponse $response) {
         return (array)json_decode($response->getBody()->__toString());
     }
 
