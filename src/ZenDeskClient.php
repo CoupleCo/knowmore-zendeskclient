@@ -13,13 +13,32 @@ class ZenDeskClient {
     private $token;
     private $guzzle;
 
-    public function __construct() {
-        $this->domain = env('ZENDESK_DOMAIN');
-//        $this->subdomain = config('zendesk.subdomain');
-        $this->username = env('ZENDESK_USERNAME');
-        $this->token = env('ZENDESK_TOKEN');
+    /**
+     * ZenDeskClient constructor.
+     * @param bool $use_domain
+     */
+    public function __construct($use_domain = true) {
+
+        $zendesk_test_status = env('ZENDESK_TEST_STATUS');
+
+        if(!is_null($zendesk_test_status) && env('ZENDESK_TEST_STATUS') == 'on'){
+
+            if($use_domain) $this->domain = env('ZENDESK_TEST_DOMAIN');
+            else $this->domain = '';
+
+            $this->username = env('ZENDESK_TEST_USERNAME');
+            $this->token = env('ZENDESK_TEST_TOKEN');
+        }else{
+            if($use_domain) $this->domain = env('ZENDESK_DOMAIN');
+            else $this->domain = '';
+
+            $this->username = env('ZENDESK_USERNAME');
+            $this->token = env('ZENDESK_TOKEN');
+        }
+
         $this->guzzle = new Guzzle;
     }
+
 
 
     public function request($method, $endpoint, $content = []) {
