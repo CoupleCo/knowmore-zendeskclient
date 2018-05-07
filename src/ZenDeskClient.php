@@ -39,8 +39,12 @@ class ZenDeskClient {
         $this->guzzle = new Guzzle;
     }
 
-
-
+    /**
+     * @param       $method
+     * @param       $endpoint
+     * @param array $content
+     * @return array
+     */
     public function request($method, $endpoint, $content = []) {
         try {
 
