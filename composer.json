@@ -10,7 +10,7 @@
             "email": "support@nomorehours.com"
         }
     ],
-    "type": "library",
+    "type": "package",
     "require": {
 		"php": ">=5.4"
     },
