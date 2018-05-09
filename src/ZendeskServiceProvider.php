@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace NomorePackage\Zendeskclient;
 
@@ -23,33 +23,41 @@ use Laravel\Lumen\Application as LumenApplication;
  * @author Vincent Klaiber <hello@vinkla.com>
  */
 class ZendeskServiceProvider extends ServiceProvider {
+
+
+
+
     /**
-     * Boot the service provider.
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+    /**
+     * Perform post-registration booting of services.
      *
      * @return void
      */
-    public function boot() {
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/../config/zendesk.php' => config_path('zendesk.php'),
+        ]);
 
-        $this->setupConfig();
+//         use the vendor configuration file as fallback
+//         $this->mergeConfigFrom(
+//             __DIR__.'/config/config.php', 'skeleton'
+//         );
     }
 
     /**
-     * Setup the config.
+     * Register any package services.
      *
      * @return void
      */
-    protected function setupConfig() {
+    public function register() {}
 
-        $source = realpath(__DIR__ . '/../config/zendesk.php');
-
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('zendesk.php')]);
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('zendesk');
-        }
-
-        $this->mergeConfigFrom($source, 'zendesk');
+    public function provides() {
+        return ['zendesk'];
     }
-
-
 }

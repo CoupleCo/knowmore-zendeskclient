@@ -1,6 +1,9 @@
 Composer Library Template
 =========================
 
+publish vendor file: 
+php artisan vendor:publish --provider="NomorePackage\Zendeskclient\ZendeskServiceProvider"
+
 Features
 --------
 

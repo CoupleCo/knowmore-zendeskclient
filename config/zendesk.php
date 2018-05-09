@@ -1,16 +1,5 @@
 <?php
 
-/*
- * This file is part of Laravel Pusher.
- *
- * (c) Pusher, Ltd (https://pusher.com)
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-declare(strict_types=1);
-
 return [
 
     /*
@@ -38,36 +27,29 @@ return [
     */
 
     'live' => [
-        'subdomain' => 'your-subdomain',
+        'subdomain' => env('ZENDESK_SUBDOMAIN'),
 
-        'domain' => 'your-domain',
+        'domain' => env('ZENDESK_DOMAIN'),
 
-        'username' => 'your-username',
+        'username' => env('ZENDESK_USERNAME'),
 
-        'token' => 'your-token',
+        'token' => env('ZENDESK_TOKEN'),
 
-        'status' => 'on || off',
+        'status' => env('ZENDESK_STATUS'),
     ],
 
     'test' => [
 
-        'subdomain' => 'your-subdomain',
+        'subdomain' => env('ZENDESK_TEST_SUBDOMAIN'),
 
-        'domain' => 'your-domain',
+        'domain' => env('ZENDESK_TEST_DOMAIN'),
 
-        'username' => 'your-username',
+        'username' => env('ZENDESK_TEST_USERNAME'),
 
-        'token' => 'your-token',
+        'token' => env('ZENDESK_TEST_TOKEN'),
 
-        'status' => 'on || off',
+        'status' => env('ZENDESK_TEST_STATUS'),
     ],
 
 
 ];
-
-
-//ZENDESK_TEST_DOMAIN=https://nomoretest.zendesk.com/api/v2/
-//ZENDESK_TEST_SUBDOMAIN=nomoretest
-//ZENDESK_TEST_USERNAME=martinvintherp@gmail.com
-//ZENDESK_TEST_TOKEN=FWteGHbFX64hTFdzGquHUjd6Jt2juKTSLTmRBvss
-//ZENDESK_TEST_STATUS=on
