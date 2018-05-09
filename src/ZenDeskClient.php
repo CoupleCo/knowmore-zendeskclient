@@ -8,6 +8,7 @@ use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
 class ZenDeskClient {
+
     private $domain;
     private $username;
     private $token;
@@ -19,21 +20,23 @@ class ZenDeskClient {
      */
     public function __construct($use_domain = true) {
 
-        $zendesk_test_status = env('ZENDESK_TEST_STATUS');
 
-        if(!is_null($zendesk_test_status) && env('ZENDESK_TEST_STATUS') == 'on'){
+        $zendesk_test_status = config('zendesk.test.status');
 
-            if($use_domain) $this->domain = env('ZENDESK_TEST_DOMAIN');
+        if(!is_null($zendesk_test_status) && $zendesk_test_status == 'on'){
+
+            if($use_domain) $this->domain = config('zendesk.test.domain');
             else $this->domain = '';
 
-            $this->username = env('ZENDESK_TEST_USERNAME');
-            $this->token = env('ZENDESK_TEST_TOKEN');
+            $this->username = config('zendesk.test.username');
+            $this->token = config('zendesk.test.token');
         }else{
-            if($use_domain) $this->domain = env('ZENDESK_DOMAIN');
+
+            if($use_domain) $this->domain = config('zendesk.live.domain');
             else $this->domain = '';
 
-            $this->username = env('ZENDESK_USERNAME');
-            $this->token = env('ZENDESK_TOKEN');
+            $this->username = config('zendesk.live.username');
+            $this->token = config('zendesk.live.token');
         }
 
         $this->guzzle = new Guzzle;

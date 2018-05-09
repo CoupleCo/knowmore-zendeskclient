@@ -4,19 +4,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Connection Name
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify which of the connections below you wish to use as
-    | your default connection for all work. Of course, you may use many
-    | connections at once using the manager class.
-    |
-    */
-
-    'default' => 'test',
-
-    /*
-    |--------------------------------------------------------------------------
     | Zendesk connections
     |--------------------------------------------------------------------------
     |
@@ -27,6 +14,7 @@ return [
     */
 
     'live' => [
+
         'subdomain' => env('ZENDESK_SUBDOMAIN'),
 
         'domain' => env('ZENDESK_DOMAIN'),
