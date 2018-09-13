@@ -13,12 +13,12 @@ class Ticket extends ZenDeskUtility {
 
     private $query_sign = '?';
 
-    public function create($description, $subject, $email, $priority = 'normal') {
+    public function create($description, $subject, $email, $priority = 'normal', $public = true) {
 
         $content = ['ticket' =>
             [
                 'subject' => $subject,
-                'comment' => ['html_body' => $description],
+                'comment' => ['html_body' => $description, 'public' => $public],
                 'requester' => $email,
                 'priority' => $priority
             ]];
