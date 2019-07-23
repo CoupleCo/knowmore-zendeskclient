@@ -115,6 +115,11 @@ class Ticket extends ZenDeskUtility {
         return $this;
     }
 
+    public function get_custom($endpoint) {
+
+        return $this->client->request('GET', $endpoint);
+    }
+
     public function search($type, $value) {
 
         $this->search = 'search.json?query=type:ticket ' . $type . ':' . $value;
